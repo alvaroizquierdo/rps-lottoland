@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+
+<title>Rock Paper Scissors</title>
+</head>
+<body>
+	<div class="container">
+		<!-- Content here -->
+
+		<div class="jumbotron">
+			<h1 class="display-4">Rock Paper Scissors</h1>
+		</div>
+
+
+
+		<div class="panel-default well">
+			<div class="row panel-footer">
+				<div class="col-md-10">
+					<form action="#" th:action="@{/game/play}" method="post">
+						<input type="submit" class="btn btn-primary btn-lg"
+							value="Play round">
+					</form>
+				</div>
+				<div class="col-md-2">
+					<form action="#" th:action="@{/game/restart}" method="post">
+						<input type="submit" class="btn btn-danger btn-lg"
+							value="Restart Game">
+					</form>
+				</div>
+
+				<div class="col-md-10 text-center">
+					<form action="#" th:action="@{/summary}" method="get">
+						<input type="submit" class="btn btn-success btn-lg" value="Summary">
+					</form>
+				</div>
+
+			</div>
+
+			<br></br>
+			<div>
+				<h2 th:inline="text">Total rounds: [[${#lists.size(rounds)}]]</h2>
+				<table class="table table-striped table-responsive-md">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Player One</th>
+							<th>Player Two</th>
+							<th>Result</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="round : ${rounds}">
+							<td th:text="${round.id}"></td>
+							<td th:text="${round.playerOneChoice}"></td>
+							<td th:text="${round.playerTwoChoice}"></td>
+							<td th:text="${round.playerOneResult.displayName}"></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+</body>
+</html>
